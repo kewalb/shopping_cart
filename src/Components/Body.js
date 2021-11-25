@@ -3,7 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 export default function Body({ cart, setCart }) {
-  const [items, setItems] = useState([
+  const [items] = useState([
     {
       name: "Product_1",
       price: 150,
@@ -38,8 +38,16 @@ export default function Body({ cart, setCart }) {
     },
   ]);
 
-  const handleClick = (item) => {
-    console.log("hi", item);
+  const handleClick = (x) => {
+    if (cart.length > 0) {
+      const itemExists = cart.find((item) => item.name === x.name);
+      if (!itemExists) {
+        setCart([...cart, x]);
+      }
+    } else {
+      setCart([x]);
+    }
+    
   };
 
   return (
@@ -68,7 +76,7 @@ export default function Body({ cart, setCart }) {
                     <div className="text-center">
                       <button
                         className="btn btn-outline-dark mt-auto"
-                        onClick={x => handleClick}
+                        onClick={() => handleClick(x)}
                       >
                         Add to cart
                       </button>
@@ -82,210 +90,5 @@ export default function Body({ cart, setCart }) {
       </section>
       <Footer />
     </div>
-
-    /*             
-            <div className="col mb-5">
-              <div className="card h-100">
-                <img
-                  className="card-img-top"
-                  src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
-                  alt="..."
-                />
-
-                <div className="card-body p-4">
-                  <div className="text-center">
-                    <h5 className="fw-bolder">Special Item</h5>
-                    <div className="d-flex justify-content-center small text-warning mb-2">
-                      <div className="bi-star-fill"></div>
-                      <div className="bi-star-fill"></div>
-                      <div className="bi-star-fill"></div>
-                      <div className="bi-star-fill"></div>
-                      <div className="bi-star-fill"></div>
-                    </div>
-                    $18.00
-                  </div>
-                </div>
-
-                <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                  <div className="text-center">
-                    <button className="btn btn-outline-dark mt-auto" href="#">
-                      Add to cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col mb-5">
-              <div className="card h-100">
-                <img
-                  className="card-img-top"
-                  src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
-                  alt="..."
-                />
-
-                <div className="card-body p-4">
-                  <div className="text-center">
-                    <h5 className="fw-bolder">Sale Item</h5>
-                    $25.00
-                  </div>
-                </div>
-
-                <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                  <div className="text-center">
-                    <button className="btn btn-outline-dark mt-auto" href="#">
-                      Add to cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col mb-5">
-              <div className="card h-100">
-                <img
-                  className="card-img-top"
-                  src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
-                  alt="..."
-                />
-
-                <div className="card-body p-4">
-                  <div className="text-center">
-                    <h5 className="fw-bolder">Popular Item</h5>
-                    <div className="d-flex justify-content-center small text-warning mb-2">
-                      <div className="bi-star-fill"></div>
-                      <div className="bi-star-fill"></div>
-                      <div className="bi-star-fill"></div>
-                      <div className="bi-star-fill"></div>
-                      <div className="bi-star-fill"></div>
-                    </div>
-                    $40.00
-                  </div>
-                </div>
-
-                <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                  <div className="text-center">
-                    <button className="btn btn-outline-dark mt-auto" href="#">
-                      Add to cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col mb-5">
-              <div className="card h-100">
-                <img
-                  className="card-img-top"
-                  src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
-                  alt="..."
-                />
-
-                <div className="card-body p-4">
-                  <h5 className="fw-bolder">Popular Item</h5>
-                  <div className="d-flex justify-content-center small text-warning mb-2">
-                    <div className="bi-star-fill"></div>
-                    <div className="bi-star-fill"></div>
-                    <div className="bi-star-fill"></div>
-                    <div className="bi-star-fill"></div>
-                    <div className="bi-star-fill"></div>
-                  </div>
-                  <div className="text-center">$25.00</div>
-                </div>
-
-                <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                  <div className="text-center">
-                    <button className="btn btn-outline-dark mt-auto" href="#">
-                      Add to cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col mb-5">
-              <div className="card h-100">
-                <img
-                  className="card-img-top"
-                  src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
-                  alt="..."
-                />
-
-                <div className="card-body p-4">
-                  <div className="text-center">
-                    <h5 className="fw-bolder">Fancy Product</h5>
-                    $120.00
-                  </div>
-                </div>
-
-                <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                  <div className="text-center">
-                    <button className="btn btn-outline-dark mt-auto" href="#">
-                      Add to cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col mb-5">
-              <div className="card h-100">
-                <img
-                  className="card-img-top"
-                  src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
-                  alt="..."
-                />
-
-                <div className="card-body p-4">
-                  <div className="text-center">
-                    <h5 className="fw-bolder">Special Item</h5>
-                    <div className="d-flex justify-contensalet-center small text-warning mb-2">
-                      <div className="bi-star-fill"></div>
-                      <div className="bi-star-fill"></div>
-                      <div className="bi-star-fill"></div>
-                      <div className="bi-star-fill"></div>
-                      <div className="bi-star-fill"></div>
-                    </div>
-                    $18.00
-                  </div>
-                </div>
-
-                <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                  <div className="text-center">
-                    <button className="btn btn-outline-dark mt-auto" href="#">
-                      Add to cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col mb-5">
-              <div className="card h-100">
-                <img
-                  className="card-img-top"
-                  src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
-                  alt="..."
-                />
-
-                <div className="card-body p-4">
-                  <div className="text-center">
-                    <h5 className="fw-bolder">Popular Item</h5>
-                    <div className="d-flex justify-content-center small text-warning mb-2">
-                      <div className="bi-star-fill"></div>
-                      <div className="bi-star-fill"></div>
-                      <div className="bi-star-fill"></div>
-                      <div className="bi-star-fill"></div>
-                      <div className="bi-star-fill"></div>
-                    </div>
-                    $40.00
-                  </div>
-                </div>
-
-                <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                  <div className="text-center">
-                    <button className="btn btn-outline-dark mt-auto" href="#">
-                      Add to cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */
   );
 }
